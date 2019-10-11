@@ -34,7 +34,61 @@ int main()
                 case'L':
                 case'J':
                 case'S':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row+1][place]=1;
+                        Array[row+1][place+1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&Array[row-m+1][place+1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+1][place+1]=1;
+                        Array[row-m+1][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+2][place+1]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+2][place-1]=1;
+                    for(int m=1;Array[row-m+1][place-1]==0&&Array[row-m][place]==0&&m<row+1;m++){
+                        Array[row-m+1][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+3][place-1]=0;
+                        Array[row-m+2][place]=0;
+                    }
+                    }
+                    break;
                 case'Z':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place]=1;
+                        Array[row][place+1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                    for(int m=1;Array[row-m+1][place-1]==0&&Array[row-m][place]==0&&Array[row-m][place+1]==0&&m<row+1;m++){
+                        Array[row-m+1][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+1][place+1]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place-1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+2][place]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m+1][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m+1][place]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+3][place]=0;
+                    }
+                    }
+                    break;
                 case'I':
                     cin>>type>>place;
                     if(type==1){
