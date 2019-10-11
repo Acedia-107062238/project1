@@ -1,1 +1,40 @@
-hello
+#include <iostream>
+#include <string>
+using namespace std;
+/*class String
+{
+private:
+    bool isEnd=0;//end or not
+public:
+    //void cArray();//create array
+
+    void gBlock();//get block
+    void
+};*/
+
+int main()
+{
+    //cArray();
+    int row,col;
+    cin>>row>>col;
+    int **Array=new int*[row];
+    for(int h=0;h<row;h++) {Array[h]=new int[col];}
+   /* do
+    {
+        gBlock();
+
+    }while(isEnd!=0);*/
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+                Array[i][j]=i+j;
+            cout<<Array[i][j];
+        }cout<<"\n";
+    }
+    for(int h=0;h<row;h++) {delete []Array[h];}
+    delete []Array;
+    return 0;
+}
+
+void cArray(){
+
+}
