@@ -36,6 +36,33 @@ int main()
                 case'S':
                 case'Z':
                 case'I':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place-1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+2][place-1]=1;
+                        Array[row+3][place-1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m+3][place-1]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row][place+1]=1;
+                        Array[row][place+2]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&Array[row-m][place+1]==0&&Array[row-m][place+2]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m][place+2]=1;
+                        Array[row-m+1][place-1]=0;
+                        Array[row-m+1][place]=0;
+                        Array[row-m+1][place+1]=0;
+                        Array[row-m+1][place+2]=0;
+                    }
+                    }
+                    break;
                 case'O':
                     cin>>place;
                     Array[row][place-1]=1;
@@ -79,4 +106,3 @@ int main()
     delete []Array;
     return 0;
 }
-
