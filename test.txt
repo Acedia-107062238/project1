@@ -15,7 +15,7 @@ int main()
         }
     }
     while((ch=getchar())!='E'&&isEnd==0)
-    {    int type,place;
+    {    char type,place;
         if('\n'==ch)
             continue;
         else{
@@ -58,6 +58,7 @@ int main()
                         Array[row-m+1][place-1]=0;
                         Array[row-m+2][place]=0;
                         Array[row-m+1][place+1]=0;
+                    }
                     }else if(type==4){
                         Array[row][place-1]=1;
                         Array[row+1][place]=1;
@@ -107,6 +108,7 @@ int main()
                         Array[row-m+2][place-1]=1;
                         Array[row-m+3][place-1]=0;
                         Array[row-m+3][place]=0;
+                    }
                     }else if(type==4){
                         Array[row][place-1]=1;
                         Array[row][place]=1;
@@ -158,6 +160,7 @@ int main()
                         Array[row-m+2][place]=1;
                         Array[row-m+3][place-1]=0;
                         Array[row-m+3][place]=0;
+                    }
                     }else if(type==4){
                         Array[row][place+1]=1;
                         Array[row+1][place-1]=1;
@@ -290,6 +293,7 @@ int main()
        }
        if(Array[row][col]!=0){isEnd=1;}//buffer have blocks or not
      }
+     while(getchar()!='\n')continue;
     }
     for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
@@ -300,4 +304,3 @@ int main()
     delete []Array;
     return 0;
 }
-
