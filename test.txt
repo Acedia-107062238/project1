@@ -21,19 +21,53 @@ int main()
     for(int h=0;h<row;h++) {Array[h]=new int[col+1];}
     for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
-            Array[i][j]=1;
+            Array[i][j]=0;
         }
     }
-   /* do
-    {
-        gBlock();
+    while((ch=getchar())!='E')
+    {    int type,place;
+        if('\n'==ch)
+            continue;
+        else{
+            switch(ch){
+                case'T':
+                case'L':
+                case'J':
+                case'S':
+                case'Z':
+                case'I':
+                case'O':
+                    cin>>place;
+                    Array[row][place-1]=1;
+                    Array[row][place]=1;
+                    Array[row+1][place-1]=1;
+                    Array[row+1][place]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+2][place]=0;
+                    }
+                    break;
+            default:cout<<"error";
 
-    }while(isEnd!=0);*/
-    for(int i=0;i<row;i++){
-            Array[i][col]=0;
-        for(int j=0;j<col;j++){
-            Array[i][col]+=Array[i][j];
+            }
         }
+       for(int i=0;i<row;i++){//full blocks or not
+            Array[i][col]=0;
+          for(int j=0;j<col;j++){
+            Array[i][col]+=Array[i][j];
+          }
+        if(Array[i][col]==col){//delete full blocks &move blocks
+         for(int k=i;k<row+3;k++){
+          for(int j=0;j<col+1;j++){
+            Array[k][j]=Array[k+1][j];
+          }
+         }
+         for(int j=0;j<col+1;j++)Array[row+3][j]=0;
+        }
+       }
+    
     }
     //if(notFall==1){isEnd=1;}
     for(int i=0;i<row;i++){
@@ -45,3 +79,4 @@ int main()
     delete []Array;
     return 0;
 }
+
