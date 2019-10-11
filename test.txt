@@ -11,30 +11,37 @@ public:
     void gBlock();//get block
     void
 };*/
-
 int main()
 {
     //cArray();
+    bool notFall=0,isEnd=0;
     int row,col;
     cin>>row>>col;
-    int **Array=new int*[row];
-    for(int h=0;h<row;h++) {Array[h]=new int[col];}
+    int **Array=new int*[row+4];
+    for(int h=0;h<row;h++) {Array[h]=new int[col+1];}
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            Array[i][j]=1;
+        }
+    }
    /* do
     {
         gBlock();
 
     }while(isEnd!=0);*/
     for(int i=0;i<row;i++){
+            Array[i][col]=0;
         for(int j=0;j<col;j++){
-                Array[i][j]=i+j;
+            Array[i][col]+=Array[i][j];
+        }
+    }
+    //if(notFall==1){isEnd=1;}
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
             cout<<Array[i][j];
         }cout<<"\n";
     }
     for(int h=0;h<row;h++) {delete []Array[h];}
     delete []Array;
     return 0;
-}
-
-void cArray(){
-
 }
