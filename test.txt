@@ -1,21 +1,11 @@
 #include <iostream>
 #include <string>
 using namespace std;
-/*class String
-{
-private:
-    bool isEnd=0;//end or not
-public:
-    //void cArray();//create array
-
-    void gBlock();//get block
-    void
-};*/
 int main()
 {
-    //cArray();
-    bool notFall=0,isEnd=0;
+    bool isEnd=0;
     int row,col;
+    char ch;
     cin>>row>>col;
     int **Array=new int*[row+4];
     for(int h=0;h<row;h++) {Array[h]=new int[col+1];}
@@ -24,15 +14,165 @@ int main()
             Array[i][j]=0;
         }
     }
-    while((ch=getchar())!='E')
+    while((ch=getchar())!='E'&&isEnd==0)
     {    int type,place;
         if('\n'==ch)
             continue;
         else{
             switch(ch){
                 case'T':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+1][place+1]=1;
+                    for(int m=1;Array[row-m+1][place-1]==0&&Array[row-m][place]==0&&Array[row-m+1][place+1]==0&&m<row+1;m++){
+                        Array[row-m+1][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+1][place+1]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+2][place+1]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+2][place]=1;
+                    for(int m=1;Array[row-m+1][place-1]==0&&Array[row-m][place]==0&&m<row+1;m++){
+                        Array[row-m+1][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+3][place]=0;
+                    }
+                    }else if(type==3){
+                        Array[row][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row][place]=1;
+                        Array[row][place+1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&Array[row-m][place+1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m+1][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+1][place+1]=0;
+                    }else if(type==4){
+                        Array[row][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+2][place-1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m+1][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m+1][place]=1;
+                        Array[row-m+3][place-1]=0;
+                        Array[row-m+2][place]=0;
+                    }
+                    }
+                    break;
                 case'L':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+2][place-1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+1][place]=0;
+                        Array[row-m+3][place-1]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place-1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+1][place+1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m+1][place]==0&&Array[row-m+1][place+1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m+1][place]=1;
+                        Array[row-m+1][place+1]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+2][place+1]=0;
+                    }
+                    }else if(type==3){
+                        Array[row][place]=1;
+                        Array[row+1][place]=1;
+                        Array[row+2][place-1]=1;
+                        Array[row+2][place]=1;
+                    for(int m=1;Array[row-m][place]==0&&Array[row-m+2][place-1]==0&&m<row+1;m++){
+                        Array[row-m][place]=1;
+                        Array[row-m+2][place-1]=1;
+                        Array[row-m+3][place-1]=0;
+                        Array[row-m+3][place]=0;
+                    }else if(type==4){
+                        Array[row][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row][place+1]=1;
+                        Array[row+1][place+1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&Array[row-m][place+1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m+1][place-1]=0;
+                        Array[row-m+1][place]=0;
+                        Array[row-m+2][place+1]=0;
+                    }
+                    }
+                    break;
                 case'J':
+                    cin>>type>>place;
+                    if(type==1){
+                        Array[row][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row+1][place]=1;
+                        Array[row+2][place]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m+1][place-1]=0;
+                        Array[row-m+3][place]=0;
+                    }
+                    }else if(type==2){
+                        Array[row][place-1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row][place]=1;
+                        Array[row][place+1]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m][place]==0&&Array[row-m][place+1]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+1][place]=0;
+                        Array[row-m+1][place+1]=0;
+                    }
+                    }else if(type==3){
+                        Array[row][place-1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+2][place-1]=1;
+                        Array[row+2][place]=1;
+                    for(int m=1;Array[row-m][place-1]==0&&Array[row-m+2][place]==0&&m<row+1;m++){
+                        Array[row-m][place-1]=1;
+                        Array[row-m+2][place]=1;
+                        Array[row-m+3][place-1]=0;
+                        Array[row-m+3][place]=0;
+                    }else if(type==4){
+                        Array[row][place+1]=1;
+                        Array[row+1][place-1]=1;
+                        Array[row+1][place]=1;
+                        Array[row+1][place+1]=1;
+                    for(int m=1;Array[row-m+1][place-1]==0&&Array[row-m+1][place]==0&&Array[row-m][place+1]==0&&m<row+1;m++){
+                        Array[row-m+1][place-1]=1;
+                        Array[row-m+1][place]=1;
+                        Array[row-m][place+1]=1;
+                        Array[row-m+2][place-1]=0;
+                        Array[row-m+2][place]=0;
+                        Array[row-m+2][place+1]=0;
+                    }
+                    }
+                    break;
                 case'S':
                     cin>>type>>place;
                     if(type==1){
@@ -133,8 +273,8 @@ int main()
             default:cout<<"error";
 
             }
-        }
-       for(int i=0;i<row;i++){//full blocks or not
+
+       for(int i=row+3;i>-1;i--){//full blocks or not
             Array[i][col]=0;
           for(int j=0;j<col;j++){
             Array[i][col]+=Array[i][j];
@@ -148,9 +288,9 @@ int main()
          for(int j=0;j<col+1;j++)Array[row+3][j]=0;
         }
        }
-    
+       if(Array[row][col]!=0){isEnd=1;}//buffer have blocks or not
+     }
     }
-    //if(notFall==1){isEnd=1;}
     for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
             cout<<Array[i][j];
@@ -160,3 +300,4 @@ int main()
     delete []Array;
     return 0;
 }
+
