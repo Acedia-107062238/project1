@@ -1,12 +1,18 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
+ofstream fout;
+ifstream fin;
 int main()
 {
+
+    fin.open("Tetris.data", ios_base::in);
+    fout.open("Tetris.final", ios_base::out);
     bool isEnd=0;
     int row,col;
-    char ch;
-    cin>>row>>col;
+    int ch,m;
+    fin>>row>>col;
     int **Array=new int*[row+4];
     for(int h=0;h<row;h++) {Array[h]=new int[col+1];}
     for(int i=0;i<row;i++){
@@ -14,15 +20,15 @@ int main()
             Array[i][j]=0;
         }
     }
-    while((ch=getchar())!='E'&&isEnd==0)
-    {    char type,place;
+    while(isEnd==0)
+    {    fin>>ch;
+        char place;
+        fin>>place;
         if('\n'==ch)
             continue;
         else{
             switch(ch){
-                case'T':
-                    cin>>type>>place;
-                    if(type==1){
+                case'T1':
                         Array[row][place]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -35,7 +41,7 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+2][place+1]=0;
                     }
-                    }else if(type==2){
+                case'T2':
                         Array[row][place]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -46,7 +52,7 @@ int main()
                         Array[row-m+2][place-1]=0;
                         Array[row-m+3][place]=0;
                     }
-                    }else if(type==3){
+                case'T3':
                         Array[row][place-1]=1;
                         Array[row+1][place]=1;
                         Array[row][place]=1;
@@ -59,7 +65,7 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+1][place+1]=0;
                     }
-                    }else if(type==4){
+                case'T4':
                         Array[row][place-1]=1;
                         Array[row+1][place]=1;
                         Array[row+1][place-1]=1;
@@ -70,11 +76,9 @@ int main()
                         Array[row-m+3][place-1]=0;
                         Array[row-m+2][place]=0;
                     }
-                    }
                     break;
-                case'L':
-                    cin>>type>>place;
-                    if(type==1){
+                case'L1':
+
                         Array[row][place-1]=1;
                         Array[row][place]=1;
                         Array[row+1][place-1]=1;
@@ -85,7 +89,7 @@ int main()
                         Array[row-m+1][place]=0;
                         Array[row-m+3][place-1]=0;
                     }
-                    }else if(type==2){
+                 case'L2':
                         Array[row][place-1]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -98,7 +102,7 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+2][place+1]=0;
                     }
-                    }else if(type==3){
+                 case'L3':
                         Array[row][place]=1;
                         Array[row+1][place]=1;
                         Array[row+2][place-1]=1;
@@ -109,7 +113,7 @@ int main()
                         Array[row-m+3][place-1]=0;
                         Array[row-m+3][place]=0;
                     }
-                    }else if(type==4){
+                    case'L4':
                         Array[row][place-1]=1;
                         Array[row][place]=1;
                         Array[row][place+1]=1;
@@ -122,11 +126,8 @@ int main()
                         Array[row-m+1][place]=0;
                         Array[row-m+2][place+1]=0;
                     }
-                    }
                     break;
-                case'J':
-                    cin>>type>>place;
-                    if(type==1){
+                case'J1':
                         Array[row][place-1]=1;
                         Array[row][place]=1;
                         Array[row+1][place]=1;
@@ -137,7 +138,7 @@ int main()
                         Array[row-m+1][place-1]=0;
                         Array[row-m+3][place]=0;
                     }
-                    }else if(type==2){
+                case'J2':
                         Array[row][place-1]=1;
                         Array[row+1][place-1]=1;
                         Array[row][place]=1;
@@ -150,7 +151,7 @@ int main()
                         Array[row-m+1][place]=0;
                         Array[row-m+1][place+1]=0;
                     }
-                    }else if(type==3){
+                case'J3':
                         Array[row][place-1]=1;
                         Array[row+1][place-1]=1;
                         Array[row+2][place-1]=1;
@@ -161,7 +162,7 @@ int main()
                         Array[row-m+3][place-1]=0;
                         Array[row-m+3][place]=0;
                     }
-                    }else if(type==4){
+                    case'J4':
                         Array[row][place+1]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -174,11 +175,11 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+2][place+1]=0;
                     }
-                    }
+
                     break;
-                case'S':
-                    cin>>type>>place;
-                    if(type==1){
+                case'S1':
+
+
                         Array[row][place-1]=1;
                         Array[row][place]=1;
                         Array[row+1][place]=1;
@@ -191,7 +192,7 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+2][place+1]=0;
                     }
-                    }else if(type==2){
+                    case'S2':
                         Array[row][place]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -202,11 +203,10 @@ int main()
                         Array[row-m+3][place-1]=0;
                         Array[row-m+2][place]=0;
                     }
-                    }
+
                     break;
-                case'Z':
-                    cin>>type>>place;
-                    if(type==1){
+                case'Z1':
+
                         Array[row][place]=1;
                         Array[row][place+1]=1;
                         Array[row+1][place-1]=1;
@@ -219,7 +219,7 @@ int main()
                         Array[row-m+2][place]=0;
                         Array[row-m+1][place+1]=0;
                     }
-                    }else if(type==2){
+                case'Z2':
                         Array[row][place-1]=1;
                         Array[row+1][place-1]=1;
                         Array[row+1][place]=1;
@@ -230,11 +230,11 @@ int main()
                         Array[row-m+2][place-1]=0;
                         Array[row-m+3][place]=0;
                     }
-                    }
+
                     break;
-                case'I':
-                    cin>>type>>place;
-                    if(type==1){
+                case'I1':
+
+
                         Array[row][place-1]=1;
                         Array[row+1][place-1]=1;
                         Array[row+2][place-1]=1;
@@ -243,7 +243,7 @@ int main()
                         Array[row-m][place-1]=1;
                         Array[row-m+3][place-1]=0;
                     }
-                    }else if(type==2){
+                 case'I2':
                         Array[row][place-1]=1;
                         Array[row][place]=1;
                         Array[row][place+1]=1;
@@ -257,7 +257,6 @@ int main()
                         Array[row-m+1][place]=0;
                         Array[row-m+1][place+1]=0;
                         Array[row-m+1][place+2]=0;
-                    }
                     }
                     break;
                 case'O':
@@ -273,7 +272,7 @@ int main()
                         Array[row-m+2][place]=0;
                     }
                     break;
-            default:cout<<"error";
+            default:fout<<"error";
 
             }
 
@@ -297,8 +296,8 @@ int main()
     }
     for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
-            cout<<Array[i][j];
-        }cout<<"\n";
+            fout<<Array[i][j];
+        }fout<<"\n";
     }
     for(int h=0;h<row;h++) {delete []Array[h];}
     delete []Array;
